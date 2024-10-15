@@ -1,4 +1,3 @@
-
 package audio.hummingbird.app;
 
 import jakarta.persistence.Access;
@@ -14,43 +13,40 @@ import jakarta.persistence.Table;
 /**
  * A Pokemon Type entity. A type is represented by an ID and a name.
  *
- * Pokemon, and Pokemon character names are trademarks of Nintendo.
+ * <p>Pokemon, and Pokemon character names are trademarks of Nintendo.
  */
 @Entity(name = "PokemonType")
 @Table(name = "POKEMONTYPE")
 @Access(AccessType.FIELD)
 @NamedQueries({
-        @NamedQuery(name = "getPokemonTypes",
-                    query = "SELECT t FROM PokemonType t"),
-        @NamedQuery(name = "getPokemonTypeById",
-                    query = "SELECT t FROM PokemonType t WHERE t.id = :id")
+  @NamedQuery(name = "getPokemonTypes", query = "SELECT t FROM PokemonType t"),
+  @NamedQuery(name = "getPokemonTypeById", query = "SELECT t FROM PokemonType t WHERE t.id = :id")
 })
 public class PokemonType {
 
-    @Id
-    @Column(name = "ID", nullable = false, updatable = false)
-    private int id;
+  @Id
+  @Column(name = "ID", nullable = false, updatable = false)
+  private int id;
 
-    @Basic(optional = false)
-    @Column(name = "NAME")
-    private String name;
+  @Basic(optional = false)
+  @Column(name = "NAME")
+  private String name;
 
-    public PokemonType() {
-    }
+  public PokemonType() {}
 
-    public int getId() {
-        return id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 }

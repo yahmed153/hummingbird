@@ -1,6 +1,4 @@
-
 package audio.hummingbird.app;
-
 
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
@@ -15,70 +13,65 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 /**
- * A Pokemon entity class. A Pokemon is represented as a triple of an
- * ID, a name and a type.
+ * A Pokemon entity class. A Pokemon is represented as a triple of an ID, a name and a type.
  *
- * Pokemon, and Pokemon character names are trademarks of Nintendo.
+ * <p>Pokemon, and Pokemon character names are trademarks of Nintendo.
  */
 @Entity(name = "Pokemon")
 @Table(name = "POKEMON")
 @Access(AccessType.PROPERTY)
 @NamedQueries({
-        @NamedQuery(name = "getPokemons",
-                    query = "SELECT p FROM Pokemon p"),
-        @NamedQuery(name = "getPokemonByName",
-                    query = "SELECT p FROM Pokemon p WHERE p.name = :name")
+  @NamedQuery(name = "getPokemons", query = "SELECT p FROM Pokemon p"),
+  @NamedQuery(name = "getPokemonByName", query = "SELECT p FROM Pokemon p WHERE p.name = :name")
 })
 public class Pokemon {
 
-    private int id;
+  private int id;
 
-    private String name;
+  private String name;
 
-    private PokemonType pokemonType;
+  private PokemonType pokemonType;
 
-    private int type;
+  private int type;
 
-    public Pokemon() {
-    }
+  public Pokemon() {}
 
-    @Id
-    @Column(name = "ID", nullable = false, updatable = false)
-    public int getId() {
-        return id;
-    }
+  @Id
+  @Column(name = "ID", nullable = false, updatable = false)
+  public int getId() {
+    return id;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    @Basic(optional = false)
-    @Column(name = "NAME", nullable = false)
-    public String getName() {
-        return name;
-    }
+  @Basic(optional = false)
+  @Column(name = "NAME", nullable = false)
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
+  @ManyToOne
+  public PokemonType getPokemonType() {
+    return pokemonType;
+  }
 
-    @ManyToOne
-    public PokemonType getPokemonType() {
-        return pokemonType;
-    }
+  public void setPokemonType(PokemonType pokemonType) {
+    this.pokemonType = pokemonType;
+    this.type = pokemonType.getId();
+  }
 
-    public void setPokemonType(PokemonType pokemonType) {
-        this.pokemonType = pokemonType;
-        this.type = pokemonType.getId();
-    }
+  @Transient
+  public int getType() {
+    return type;
+  }
 
-    @Transient
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
+  public void setType(int type) {
+    this.type = type;
+  }
 }

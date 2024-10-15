@@ -1,7 +1,4 @@
-
 package audio.hummingbird.app;
-
-import java.util.List;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -9,12 +6,13 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import java.util.List;
 
 /**
  * This class implements a REST endpoint to retrieve Pokemon types.
  *
  * <ul>
- * <li>GET /type: Retrieve list of all pokemon types</li>
+ *   <li>GET /type: Retrieve list of all pokemon types
  * </ul>
  *
  * Pokemon, and Pokemon character names are trademarks of Nintendo.
@@ -22,12 +20,12 @@ import jakarta.ws.rs.core.MediaType;
 @Path("type")
 public class PokemonTypeResource {
 
-    @PersistenceContext(unitName = "pu1")
-    private EntityManager entityManager;
+  @PersistenceContext(unitName = "pu1")
+  private EntityManager entityManager;
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<PokemonType> getPokemonTypes() {
-        return entityManager.createNamedQuery("getPokemonTypes", PokemonType.class).getResultList();
-    }
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public List<PokemonType> getPokemonTypes() {
+    return entityManager.createNamedQuery("getPokemonTypes", PokemonType.class).getResultList();
+  }
 }
