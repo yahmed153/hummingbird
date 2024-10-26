@@ -2,6 +2,9 @@
 
 Helidon MP application that uses JPA with an in-memory H2 database.
 
+## Demo
+[HummingBird ADP Demo](demo.gif)
+
 ## Build and run
 
 
