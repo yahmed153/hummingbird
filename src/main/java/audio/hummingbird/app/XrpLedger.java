@@ -68,6 +68,7 @@ public class XrpLedger {
     public static void sendPayment() throws JsonRpcClientErrorException, JsonProcessingException, InterruptedException {
 
         XrpParams xrpParams = createWallet();
+        Thread.sleep(1000);
         // Request current fee information from rippled
         FeeResult feeResult = xrplClient.fee();
         XrpCurrencyAmount openLedgerFee = feeResult.drops().openLedgerFee();
