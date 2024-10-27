@@ -1,6 +1,6 @@
 # app
 
-Helidon MP application that uses JPA with an in-memory H2 database.
+Application that uses XRP to purchase a song then download the music file.
 
 ## Demo
 ![HummingBird ADP Demo](demo.gif)
