@@ -9,11 +9,8 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.StreamingOutput;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.xrpl.xrpl4j.client.JsonRpcClientErrorException;
-
 import java.nio.file.Files;
+import org.xrpl.xrpl4j.client.JsonRpcClientErrorException;
 
 /**
  * A simple JAX-RS resource to greet you. Examples:
@@ -24,8 +21,6 @@ import java.nio.file.Files;
  */
 @Path("/download")
 public class DownloadResource {
-  private final Logger logger = LoggerFactory.getLogger(DownloadResource.class);
-
   @Inject
   public DownloadResource() {}
 
@@ -37,12 +32,13 @@ public class DownloadResource {
   @GET
   @Path("/{fname}")
   @Produces(MediaType.APPLICATION_OCTET_STREAM)
-  public Response download(@PathParam("fname") String fname) throws JsonRpcClientErrorException, JsonProcessingException, InterruptedException {
+  public Response download(@PathParam("fname") String fname)
+      throws JsonRpcClientErrorException, JsonProcessingException, InterruptedException {
     XrpLedger.sendPayment();
     var path = java.nio.file.Path.of("song.mp3").toAbsolutePath();
     return Response.ok()
-            .header("Content-Disposition", "attachment; filename=\"" + fname + "\"")
-            .entity((StreamingOutput) output -> Files.copy(path, output))
-            .build();
+        .header("Content-Disposition", "attachment; filename=\"" + fname + "\"")
+        .entity((StreamingOutput) output -> Files.copy(path, output))
+        .build();
   }
 }
